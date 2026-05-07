@@ -2,72 +2,101 @@
 
 ## Table of Contents
 
-1. [Project Overview](#1-project-overview)  
-   1.1 [Research Title](#11-research-title)  
-   1.2 [Research Problem](#12-research-problem)  
-   1.3 [Research Objective](#13-research-objective)  
-   1.4 [Q1-Oriented Contribution Statement](#14-q1-oriented-contribution-statement)  
-2. [Dataset](#2-dataset)  
-   2.1 [Dataset Source](#21-dataset-source)  
-   2.2 [Raw Data Files](#22-raw-data-files)  
-   2.3 [Dataset Summary](#23-dataset-summary)  
-   2.4 [Target Definition](#24-target-definition)  
-3. [Research Design](#3-research-design)  
-   3.1 [Prediction Task](#31-prediction-task)  
-   3.2 [Observation Windows](#32-observation-windows)  
-   3.3 [Feature Groups](#33-feature-groups)  
-   3.4 [Evaluation Settings](#34-evaluation-settings)  
-4. [Methodology](#4-methodology)  
-   4.1 [Overall Pipeline](#41-overall-pipeline)  
-   4.2 [Data Preprocessing](#42-data-preprocessing)  
-   4.3 [Temporal Feature Engineering](#43-temporal-feature-engineering)  
-   4.4 [Modeling Strategy](#44-modeling-strategy)  
-   4.5 [Explainability Analysis](#45-explainability-analysis)  
-   4.6 [Fairness and Subgroup Analysis](#46-fairness-and-subgroup-analysis)  
-   4.7 [Calibration and Threshold Analysis](#47-calibration-and-threshold-analysis)  
-   4.8 [Bootstrap Confidence Intervals](#48-bootstrap-confidence-intervals)  
-5. [Repository Structure](#5-repository-structure)  
-6. [Reproducibility Guide](#6-reproducibility-guide)  
-   6.1 [Environment Setup](#61-environment-setup)  
-   6.2 [Dataset Placement](#62-dataset-placement)  
-   6.3 [Run All Experiments](#63-run-all-experiments)  
-7. [Experimental Results](#7-experimental-results)  
-   7.1 [Standard Early Prediction](#71-standard-early-prediction)  
-   7.2 [Active-at-Window Early Prediction](#72-active-at-window-early-prediction)  
-   7.3 [Feature-Group Ablation Study](#73-feature-group-ablation-study)  
-   7.4 [SHAP Explainability](#74-shap-explainability)  
-   7.5 [Fairness and Subgroup Analysis](#75-fairness-and-subgroup-analysis)  
-   7.6 [Cross-Module Validation](#76-cross-module-validation)  
-   7.7 [Calibration and Threshold Analysis](#77-calibration-and-threshold-analysis)  
-   7.8 [Bootstrap Confidence Interval Analysis](#78-bootstrap-confidence-interval-analysis)  
-8. [Generated Tables](#8-generated-tables)  
-9. [Generated Figures](#9-generated-figures)  
-10. [Q1 Manuscript Positioning](#10-q1-manuscript-positioning)  
-    10.1 [Recommended Paper Title](#101-recommended-paper-title)  
-    10.2 [Suggested Abstract](#102-suggested-abstract)  
-    10.3 [Suggested Research Questions](#103-suggested-research-questions)  
-    10.4 [Suggested Manuscript Structure](#104-suggested-manuscript-structure)  
-11. [Key Findings](#11-key-findings)  
-12. [Limitations](#12-limitations)  
-13. [Future Work](#13-future-work)  
-14. [Citation](#14-citation)  
-15. [License and Ethical Use](#15-license-and-ethical-use)
+<details open>
+<summary>Click to expand/collapse navigation</summary>
+
+- [1. Project Overview](#1-project-overview)
+  - [1.1 Research Title](#11-research-title)
+  - [1.2 Research Problem](#12-research-problem)
+  - [1.3 Research Objective](#13-research-objective)
+  - [1.4 Q1-Oriented Contribution Statement](#14-q1-oriented-contribution-statement)
+- [2. Dataset](#2-dataset)
+  - [2.1 Dataset Source](#21-dataset-source)
+  - [2.2 Raw Data Files](#22-raw-data-files)
+  - [2.3 Dataset Summary](#23-dataset-summary)
+  - [2.4 Target Definition](#24-target-definition)
+- [3. Research Design](#3-research-design)
+  - [3.1 Prediction Task](#31-prediction-task)
+  - [3.2 Observation Windows](#32-observation-windows)
+  - [3.3 Feature Groups](#33-feature-groups)
+  - [3.4 Evaluation Settings](#34-evaluation-settings)
+- [4. Methodology](#4-methodology)
+  - [4.1 Overall Pipeline](#41-overall-pipeline)
+  - [4.2 Data Preprocessing](#42-data-preprocessing)
+  - [4.3 Temporal Feature Engineering](#43-temporal-feature-engineering)
+  - [4.4 Modeling Strategy](#44-modeling-strategy)
+  - [4.5 Explainability Analysis](#45-explainability-analysis)
+  - [4.6 Fairness and Subgroup Analysis](#46-fairness-and-subgroup-analysis)
+  - [4.7 Calibration and Threshold Analysis](#47-calibration-and-threshold-analysis)
+  - [4.8 Bootstrap Confidence Intervals](#48-bootstrap-confidence-intervals)
+- [5. Repository Structure](#5-repository-structure)
+- [6. Reproducibility Guide](#6-reproducibility-guide)
+  - [6.1 Environment Setup](#61-environment-setup)
+  - [6.2 Dataset Placement](#62-dataset-placement)
+  - [6.3 Run All Experiments](#63-run-all-experiments)
+- [7. Experimental Results](#7-experimental-results)
+  - [7.1 Standard Early Prediction](#71-standard-early-prediction)
+  - [7.2 Active-at-Window Early Prediction](#72-active-at-window-early-prediction)
+  - [7.3 Feature-Group Ablation Study](#73-feature-group-ablation-study)
+  - [7.4 SHAP Explainability](#74-shap-explainability)
+  - [7.5 Fairness and Subgroup Analysis](#75-fairness-and-subgroup-analysis)
+  - [7.6 Cross-Module Validation](#76-cross-module-validation)
+  - [7.7 Calibration and Threshold Analysis](#77-calibration-and-threshold-analysis)
+  - [7.8 Bootstrap Confidence Interval Analysis](#78-bootstrap-confidence-interval-analysis)
+- [8. Generated Tables](#8-generated-tables)
+- [9. Generated Figures](#9-generated-figures)
+  - [9.1 SHAP Bar Plots](#91-shap-bar-plots)
+  - [9.2 SHAP Beeswarm Plots](#92-shap-beeswarm-plots)
+  - [9.3 Calibration Curves](#93-calibration-curves)
+- [10. Q1 Manuscript Positioning](#10-q1-manuscript-positioning)
+  - [10.1 Recommended Paper Title](#101-recommended-paper-title)
+  - [10.2 Suggested Abstract](#102-suggested-abstract)
+  - [10.3 Suggested Research Questions](#103-suggested-research-questions)
+  - [10.4 Suggested Manuscript Structure](#104-suggested-manuscript-structure)
+- [11. Key Findings](#11-key-findings)
+- [12. Limitations](#12-limitations)
+- [13. Future Work](#13-future-work)
+- [14. Citation](#14-citation)
+- [15. License and Ethical Use](#15-license-and-ethical-use)
+- [16. Q1 Result Tables and Rendered Figures](#16-q1-result-tables-and-rendered-figures)
+  - [16.1 Supplementary Result Tables](#161-supplementary-result-tables)
+  - [16.2 SHAP Feature Importance Figures](#162-shap-feature-importance-figures)
+    - [Figure 16.1. SHAP feature importance, Day 14](#figure-161-shap-feature-importance-day-14)
+    - [Figure 16.2. SHAP feature importance, Day 28](#figure-162-shap-feature-importance-day-28)
+    - [Figure 16.3. SHAP feature importance, Day 56](#figure-163-shap-feature-importance-day-56)
+    - [Figure 16.4. SHAP feature importance, Day 84](#figure-164-shap-feature-importance-day-84)
+    - [Figure 16.5. SHAP feature importance, Full period](#figure-165-shap-feature-importance-full-period)
+  - [16.3 SHAP Beeswarm Figures](#163-shap-beeswarm-figures)
+    - [Figure 16.6. SHAP beeswarm, Day 14](#figure-166-shap-beeswarm-day-14)
+    - [Figure 16.7. SHAP beeswarm, Day 28](#figure-167-shap-beeswarm-day-28)
+    - [Figure 16.8. SHAP beeswarm, Day 56](#figure-168-shap-beeswarm-day-56)
+    - [Figure 16.9. SHAP beeswarm, Day 84](#figure-169-shap-beeswarm-day-84)
+    - [Figure 16.10. SHAP beeswarm, Full period](#figure-1610-shap-beeswarm-full-period)
+  - [16.4 Calibration Curve Figures](#164-calibration-curve-figures)
+    - [Figure 16.11. Calibration curve, Day 14](#figure-1611-calibration-curve-day-14)
+    - [Figure 16.12. Calibration curve, Day 28](#figure-1612-calibration-curve-day-28)
+    - [Figure 16.13. Calibration curve, Day 56](#figure-1613-calibration-curve-day-56)
+    - [Figure 16.14. Calibration curve, Day 84](#figure-1614-calibration-curve-day-84)
+    - [Figure 16.15. Calibration curve, Full period](#figure-1615-calibration-curve-full-period)
+
+</details>
 
 ---
 
-# 1. Project Overview
 
-## 1.1 Research Title
+## 1. Project Overview
+
+### 1.1 Research Title
 
 **Explainable Temporal Learning Analytics for Early Identification of At-Risk Students in Online Higher Education**
 
 This repository implements a complete, Q1-journal-oriented experimental framework for early identification of at-risk students using the **Open University Learning Analytics Dataset (OULAD)**. The project integrates temporal feature engineering, early-warning prediction, active-at-window evaluation, feature-group ablation, SHAP-based explainability, subgroup/fairness analysis, cross-module validation, calibration analysis, threshold optimization, and bootstrap confidence intervals.
 
-## 1.2 Research Problem
+### 1.2 Research Problem
 
 Online higher education platforms continuously record students' learning activities through Virtual Learning Environment (VLE) logs, assessment submissions, and course interactions. However, these behavioral traces are often underutilized for timely academic-risk detection. A practical early-warning system should identify students at risk of failure or withdrawal before the end of the course, while also providing interpretable, calibrated, and fairness-aware decision-support evidence.
 
-## 1.3 Research Objective
+### 1.3 Research Objective
 
 The objective of this project is to develop and evaluate an explainable temporal learning analytics framework that can identify at-risk students across multiple observation windows using demographic, course-context, VLE engagement, and assessment-related indicators.
 
@@ -78,7 +107,7 @@ At-risk      = Fail + Withdrawn
 Non-risk     = Pass + Distinction
 ```
 
-## 1.4 Q1-Oriented Contribution Statement
+### 1.4 Q1-Oriented Contribution Statement
 
 This study contributes:
 
@@ -93,13 +122,13 @@ This study contributes:
 
 ---
 
-# 2. Dataset
+## 2. Dataset
 
-## 2.1 Dataset Source
+### 2.1 Dataset Source
 
 This project uses the **Open University Learning Analytics Dataset (OULAD)**, a widely used benchmark dataset for learning analytics research. The dataset contains anonymized student demographics, course information, assessment submissions, registration records, VLE interaction logs, and VLE activity metadata.
 
-## 2.2 Raw Data Files
+### 2.2 Raw Data Files
 
 The raw dataset is expected to be placed in:
 
@@ -119,7 +148,7 @@ studentVle.csv
 vle.csv
 ```
 
-## 2.3 Dataset Summary
+### 2.3 Dataset Summary
 
 | Table | Rows | Columns | Main Content |
 |---|---:|---:|---|
@@ -131,7 +160,7 @@ vle.csv
 | `studentVle.csv` | 10,655,280 | 6 | Daily VLE interactions and click counts |
 | `vle.csv` | 6,364 | 6 | VLE resource metadata and activity type |
 
-## 2.4 Target Definition
+### 2.4 Target Definition
 
 The original OULAD final result contains four categories:
 
@@ -151,9 +180,9 @@ The resulting class distribution is:
 
 ---
 
-# 3. Research Design
+## 3. Research Design
 
-## 3.1 Prediction Task
+### 3.1 Prediction Task
 
 The task is binary classification:
 
@@ -165,7 +194,7 @@ Output:
 Probability that a student belongs to the at-risk group.
 ```
 
-## 3.2 Observation Windows
+### 3.2 Observation Windows
 
 The model is evaluated under multiple temporal observation windows:
 
@@ -177,7 +206,7 @@ The model is evaluated under multiple temporal observation windows:
 | Day 84 | Mid-course prediction |
 | Full period | Upper-bound complete-course benchmark |
 
-## 3.3 Feature Groups
+### 3.3 Feature Groups
 
 The framework constructs four main feature groups:
 
@@ -188,7 +217,7 @@ The framework constructs four main feature groups:
 | VLE engagement | `total_clicks`, `active_days`, `last_vle_day`, `unique_sites`, `click_page`, `click_forumng` |
 | Assessment | `mean_score`, `max_score`, `weighted_score_ratio`, `submission_delay`, `assessment_count` |
 
-## 3.4 Evaluation Settings
+### 3.4 Evaluation Settings
 
 This project evaluates the framework through the following settings:
 
@@ -205,9 +234,9 @@ This project evaluates the framework through the following settings:
 
 ---
 
-# 4. Methodology
+## 4. Methodology
 
-## 4.1 Overall Pipeline
+### 4.1 Overall Pipeline
 
 ```mermaid
 flowchart TD
@@ -232,7 +261,7 @@ flowchart TD
     M --> N
 ```
 
-## 4.2 Data Preprocessing
+### 4.2 Data Preprocessing
 
 The preprocessing stage:
 
@@ -242,7 +271,7 @@ The preprocessing stage:
 4. Removes direct leakage variables from predictors, especially `final_result`, `id_student`, and `date_unregistration`.
 5. Saves processed feature tables for full-period and early-window experiments.
 
-## 4.3 Temporal Feature Engineering
+### 4.3 Temporal Feature Engineering
 
 The framework constructs temporal learning indicators, including:
 
@@ -255,7 +284,7 @@ The framework constructs temporal learning indicators, including:
 | Assessment performance | `mean_score`, `max_score`, `min_score`, `weighted_score_ratio` |
 | Submission behavior | `first_submission_day`, `last_submission_day`, `mean_submission_delay` |
 
-## 4.4 Modeling Strategy
+### 4.4 Modeling Strategy
 
 The following models are evaluated:
 
@@ -272,7 +301,7 @@ XGBoost + All features
 
 because it consistently achieved the strongest or near-strongest performance across major experiments.
 
-## 4.5 Explainability Analysis
+### 4.5 Explainability Analysis
 
 SHAP-style feature contribution analysis is performed using XGBoost feature contributions. The analysis produces:
 
@@ -281,7 +310,7 @@ SHAP-style feature contribution analysis is performed using XGBoost feature cont
 3. SHAP bar plots.
 4. SHAP beeswarm plots.
 
-## 4.6 Fairness and Subgroup Analysis
+### 4.6 Fairness and Subgroup Analysis
 
 Subgroup performance is evaluated across:
 
@@ -307,7 +336,7 @@ At-risk rate
 Predicted at-risk rate
 ```
 
-## 4.7 Calibration and Threshold Analysis
+### 4.7 Calibration and Threshold Analysis
 
 Calibration analysis evaluates whether predicted probabilities align with observed at-risk rates.
 
@@ -320,7 +349,7 @@ Calibration curve
 Threshold-specific precision, recall, specificity, F1-score
 ```
 
-## 4.8 Bootstrap Confidence Intervals
+### 4.8 Bootstrap Confidence Intervals
 
 Non-parametric bootstrap resampling is performed using 1,000 bootstrap iterations on the test predictions.
 
@@ -337,7 +366,7 @@ PR-AUC
 
 ---
 
-# 5. Repository Structure
+## 5. Repository Structure
 
 ```text
 oulad-explainable-early-warning/
@@ -404,9 +433,9 @@ oulad-explainable-early-warning/
 
 ---
 
-# 6. Reproducibility Guide
+## 6. Reproducibility Guide
 
-## 6.1 Environment Setup
+### 6.1 Environment Setup
 
 Activate the Python environment:
 
@@ -426,7 +455,7 @@ Optional:
 pip freeze > requirements.txt
 ```
 
-## 6.2 Dataset Placement
+### 6.2 Dataset Placement
 
 Place the OULAD dataset in:
 
@@ -452,7 +481,7 @@ studentVle.csv
 vle.csv
 ```
 
-## 6.3 Run All Experiments
+### 6.3 Run All Experiments
 
 Run the full pipeline:
 
@@ -473,9 +502,9 @@ python src/12_bootstrap_confidence_interval.py
 
 ---
 
-# 7. Experimental Results
+## 7. Experimental Results
 
-## 7.1 Standard Early Prediction
+### 7.1 Standard Early Prediction
 
 **Table 1. Standard early prediction performance using XGBoost + All features.**
 
@@ -489,7 +518,7 @@ python src/12_bootstrap_confidence_interval.py
 
 Interpretation: performance increases as more temporal learning evidence becomes available. The full-period setting should be interpreted as an upper-bound benchmark rather than a deployable early-warning setting.
 
-## 7.2 Active-at-Window Early Prediction
+### 7.2 Active-at-Window Early Prediction
 
 **Table 2. Active-at-window prediction, excluding students already withdrawn before each observation window.**
 
@@ -502,7 +531,7 @@ Interpretation: performance increases as more temporal learning evidence becomes
 
 Interpretation: active-at-window performance is lower than standard early-window performance but provides a stricter and more realistic estimate of deployable early-warning utility.
 
-## 7.3 Feature-Group Ablation Study
+### 7.3 Feature-Group Ablation Study
 
 **Table 3. Best feature group per observation window.**
 
@@ -516,7 +545,7 @@ Interpretation: active-at-window performance is lower than standard early-window
 
 Key finding: integrating demographic, course-context, VLE engagement, and assessment-related features provides the strongest overall performance.
 
-## 7.4 SHAP Explainability
+### 7.4 SHAP Explainability
 
 **Table 4. Top SHAP-ranked raw features by observation window.**
 
@@ -530,7 +559,7 @@ Key finding: integrating demographic, course-context, VLE engagement, and assess
 
 Key interpretation: early prediction relies more on engagement continuity and course context, while later prediction increasingly depends on assessment performance and submission behavior.
 
-## 7.5 Fairness and Subgroup Analysis
+### 7.5 Fairness and Subgroup Analysis
 
 Subgroup analysis evaluates performance across:
 
@@ -554,7 +583,7 @@ The largest early-window gaps were observed in:
 
 Key interpretation: early-warning predictions are useful but should be interpreted cautiously because subgroup performance gaps are more pronounced in the earliest observation windows.
 
-## 7.6 Cross-Module Validation
+### 7.6 Cross-Module Validation
 
 **Table 5. Cross-module validation summary.**
 
@@ -578,7 +607,7 @@ Key interpretation: early-warning predictions are useful but should be interpret
 
 Key interpretation: cross-module validation is more challenging than random-split evaluation. Module GGG appears to represent a distribution-shift case in which the model tends to over-identify students as at risk.
 
-## 7.7 Calibration and Threshold Analysis
+### 7.7 Calibration and Threshold Analysis
 
 **Table 7. Calibration and threshold summary.**
 
@@ -592,7 +621,7 @@ Key interpretation: cross-module validation is more challenging than random-spli
 
 Key interpretation: lower thresholds are preferable in early windows when recall is more important for intervention-oriented screening.
 
-## 7.8 Bootstrap Confidence Interval Analysis
+### 7.8 Bootstrap Confidence Interval Analysis
 
 **Table 8. Bootstrap 95% confidence intervals at default threshold 0.50.**
 
@@ -616,7 +645,7 @@ Key interpretation: lower thresholds are preferable in early windows when recall
 
 ---
 
-# 8. Generated Tables
+## 8. Generated Tables
 
 | File | Description |
 |---|---|
@@ -644,9 +673,9 @@ Key interpretation: lower thresholds are preferable in early windows when recall
 
 ---
 
-# 9. Generated Figures
+## 9. Generated Figures
 
-## 9.1 SHAP Bar Plots
+### 9.1 SHAP Bar Plots
 
 | Figure | Path |
 |---|---|
@@ -656,7 +685,7 @@ Key interpretation: lower thresholds are preferable in early windows when recall
 | Figure 4. SHAP bar plot for Day 84 | `outputs/figures/shap/shap_bar_day84.png` |
 | Figure 5. SHAP bar plot for Full period | `outputs/figures/shap/shap_bar_full.png` |
 
-## 9.2 SHAP Beeswarm Plots
+### 9.2 SHAP Beeswarm Plots
 
 | Figure | Path |
 |---|---|
@@ -666,7 +695,7 @@ Key interpretation: lower thresholds are preferable in early windows when recall
 | Figure 9. SHAP beeswarm plot for Day 84 | `outputs/figures/shap/shap_beeswarm_day84.png` |
 | Figure 10. SHAP beeswarm plot for Full period | `outputs/figures/shap/shap_beeswarm_full.png` |
 
-## 9.3 Calibration Curves
+### 9.3 Calibration Curves
 
 | Figure | Path |
 |---|---|
@@ -678,9 +707,9 @@ Key interpretation: lower thresholds are preferable in early windows when recall
 
 ---
 
-# 10. Q1 Manuscript Positioning
+## 10. Q1 Manuscript Positioning
 
-## 10.1 Recommended Paper Title
+### 10.1 Recommended Paper Title
 
 **Explainable, Calibrated, and Fairness-Aware Temporal Learning Analytics for Early Identification of At-Risk Students in Online Higher Education**
 
@@ -688,11 +717,11 @@ Alternative shorter title:
 
 **Explainable Temporal Learning Analytics for Early Identification of At-Risk Students in Online Higher Education**
 
-## 10.2 Suggested Abstract
+### 10.2 Suggested Abstract
 
 Digital learning environments generate rich behavioral traces that can support early identification of students at risk of academic failure or withdrawal. However, many predictive models are evaluated under simplified random-split settings and provide limited evidence regarding temporal validity, interpretability, subgroup reliability, cross-course generalization, and probability calibration. This study proposes an explainable temporal learning analytics framework for early identification of at-risk students using the Open University Learning Analytics Dataset. The framework integrates demographic, course-context, VLE engagement, and assessment-related features across multiple observation windows. Models are evaluated under standard early prediction, active-at-window prediction, feature-group ablation, cross-module validation, subgroup analysis, calibration analysis, and bootstrap confidence intervals. Results show that standard early prediction performance improved from a ROC-AUC of 0.8012 at day 14 to 0.9160 at day 84, while the full-period upper-bound setting achieved 0.9894. Active-at-window evaluation produced more conservative but practically relevant performance estimates, with ROC-AUC increasing from 0.7476 to 0.8574. SHAP analysis revealed a temporal shift from engagement and contextual indicators in early windows toward assessment and submission-related indicators in later windows. Calibration and threshold analysis further showed that stage-specific thresholds improved recall-oriented early-warning utility. These findings demonstrate the importance of temporally constrained, interpretable, calibrated, and fairness-aware evaluation for educational early-warning systems.
 
-## 10.3 Suggested Research Questions
+### 10.3 Suggested Research Questions
 
 **RQ1.** How accurately can temporal learning analytics features identify at-risk students across different observation windows?
 
@@ -708,7 +737,7 @@ Digital learning environments generate rich behavioral traces that can support e
 
 **RQ7.** Are the predicted probabilities sufficiently calibrated for decision-support use, and what thresholds are suitable for intervention-oriented screening?
 
-## 10.4 Suggested Manuscript Structure
+### 10.4 Suggested Manuscript Structure
 
 ```text
 1. Introduction
@@ -757,7 +786,7 @@ Digital learning environments generate rich behavioral traces that can support e
 
 ---
 
-# 11. Key Findings
+## 11. Key Findings
 
 1. Standard early prediction performance improved consistently as the observation window increased.
 2. The full-period setting achieved very high performance but should be interpreted only as an upper-bound benchmark.
@@ -773,7 +802,7 @@ Digital learning environments generate rich behavioral traces that can support e
 
 ---
 
-# 12. Limitations
+## 12. Limitations
 
 1. The dataset is observational; therefore, predictive associations should not be interpreted as causal relationships.
 2. Some demographic and contextual variables contributed to prediction, but these variables are not directly actionable and require careful ethical interpretation.
@@ -784,7 +813,7 @@ Digital learning environments generate rich behavioral traces that can support e
 
 ---
 
-# 13. Future Work
+## 13. Future Work
 
 Future work should investigate:
 
@@ -798,7 +827,7 @@ Future work should investigate:
 
 ---
 
-# 14. Citation
+## 14. Citation
 
 If this repository is used in academic work, cite the project as:
 
@@ -814,7 +843,7 @@ If this repository is used in academic work, cite the project as:
 
 ---
 
-# 15. License and Ethical Use
+## 15. License and Ethical Use
 
 This repository is intended for academic research and educational analytics experimentation. The dataset is anonymized, but student-risk prediction remains a sensitive educational application. Predictions should be used only as decision-support signals and should not be used as deterministic labels for punitive or exclusionary decisions.
 
@@ -828,11 +857,11 @@ Responsible use principles:
 
 ---
 
-# 16. Q1 Result Tables and Rendered Figures
+## 16. Q1 Result Tables and Rendered Figures
 
 This section provides repository-accessible supplementary tables and rendered figures for the Q1-oriented experimental framework. Raw and processed datasets are intentionally excluded from the repository to avoid redistributing large educational data files. Users should download the original OULAD dataset separately and run the scripts in `src/` to reproduce the results.
 
-## 16.1 Supplementary Result Tables
+### 16.1 Supplementary Result Tables
 
 | Table File | Description |
 |---|---|
@@ -865,69 +894,68 @@ This section provides repository-accessible supplementary tables and rendered fi
 | [`bootstrap_confidence_interval_summary.csv`](docs/tables/bootstrap_confidence_interval_summary.csv) | Bootstrap 95% confidence intervals |
 | [`bootstrap_metric_samples_all_windows.csv`](docs/tables/bootstrap_metric_samples_all_windows.csv) | Bootstrap metric samples for reproducibility |
 
-## 16.2 SHAP Feature Importance Figures
+### 16.2 SHAP Feature Importance Figures
 
-### Figure 16.1. SHAP feature importance, Day 14
+#### Figure 16.1. SHAP feature importance, Day 14
 
 ![SHAP bar Day 14](docs/figures/shap/shap_bar_day14.png)
 
-### Figure 16.2. SHAP feature importance, Day 28
+#### Figure 16.2. SHAP feature importance, Day 28
 
 ![SHAP bar Day 28](docs/figures/shap/shap_bar_day28.png)
 
-### Figure 16.3. SHAP feature importance, Day 56
+#### Figure 16.3. SHAP feature importance, Day 56
 
 ![SHAP bar Day 56](docs/figures/shap/shap_bar_day56.png)
 
-### Figure 16.4. SHAP feature importance, Day 84
+#### Figure 16.4. SHAP feature importance, Day 84
 
 ![SHAP bar Day 84](docs/figures/shap/shap_bar_day84.png)
 
-### Figure 16.5. SHAP feature importance, Full period
+#### Figure 16.5. SHAP feature importance, Full period
 
 ![SHAP bar Full](docs/figures/shap/shap_bar_full.png)
 
-## 16.3 SHAP Beeswarm Figures
+### 16.3 SHAP Beeswarm Figures
 
-### Figure 16.6. SHAP beeswarm, Day 14
+#### Figure 16.6. SHAP beeswarm, Day 14
 
 ![SHAP beeswarm Day 14](docs/figures/shap/shap_beeswarm_day14.png)
 
-### Figure 16.7. SHAP beeswarm, Day 28
+#### Figure 16.7. SHAP beeswarm, Day 28
 
 ![SHAP beeswarm Day 28](docs/figures/shap/shap_beeswarm_day28.png)
 
-### Figure 16.8. SHAP beeswarm, Day 56
+#### Figure 16.8. SHAP beeswarm, Day 56
 
 ![SHAP beeswarm Day 56](docs/figures/shap/shap_beeswarm_day56.png)
 
-### Figure 16.9. SHAP beeswarm, Day 84
+#### Figure 16.9. SHAP beeswarm, Day 84
 
 ![SHAP beeswarm Day 84](docs/figures/shap/shap_beeswarm_day84.png)
 
-### Figure 16.10. SHAP beeswarm, Full period
+#### Figure 16.10. SHAP beeswarm, Full period
 
 ![SHAP beeswarm Full](docs/figures/shap/shap_beeswarm_full.png)
 
-## 16.4 Calibration Curve Figures
+### 16.4 Calibration Curve Figures
 
-### Figure 16.11. Calibration curve, Day 14
+#### Figure 16.11. Calibration curve, Day 14
 
 ![Calibration Day 14](docs/figures/calibration/calibration_curve_day14.png)
 
-### Figure 16.12. Calibration curve, Day 28
+#### Figure 16.12. Calibration curve, Day 28
 
 ![Calibration Day 28](docs/figures/calibration/calibration_curve_day28.png)
 
-### Figure 16.13. Calibration curve, Day 56
+#### Figure 16.13. Calibration curve, Day 56
 
 ![Calibration Day 56](docs/figures/calibration/calibration_curve_day56.png)
 
-### Figure 16.14. Calibration curve, Day 84
+#### Figure 16.14. Calibration curve, Day 84
 
 ![Calibration Day 84](docs/figures/calibration/calibration_curve_day84.png)
 
-### Figure 16.15. Calibration curve, Full period
+#### Figure 16.15. Calibration curve, Full period
 
 ![Calibration Full](docs/figures/calibration/calibration_curve_full.png)
-
