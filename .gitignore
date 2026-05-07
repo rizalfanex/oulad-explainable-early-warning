@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+
+# Environment
+.env
+.venv/
+venv/
+env/
+*.conda
+
+# Raw and processed data
+data/raw/
+data/processed/
+*.csv
+*.xlsx
+*.parquet
+*.pkl
+
+# Model files
+outputs/models/
+*.joblib
+*.pt
+*.pth
+*.onnx
+
+# Large outputs
+outputs/tables/
+outputs/reports/
+
+# Figures can be included if needed
+# outputs/figures/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Ignore all generated outputs
+outputs/
