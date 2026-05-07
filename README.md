@@ -825,3 +825,109 @@ Responsible use principles:
 3. Monitor subgroup performance before deployment.
 4. Prefer human-in-the-loop intervention decisions.
 5. Avoid using the model as a fully automated decision-making system.
+
+---
+
+# 16. Q1 Result Tables and Rendered Figures
+
+This section provides repository-accessible supplementary tables and rendered figures for the Q1-oriented experimental framework. Raw and processed datasets are intentionally excluded from the repository to avoid redistributing large educational data files. Users should download the original OULAD dataset separately and run the scripts in `src/` to reproduce the results.
+
+## 16.1 Supplementary Result Tables
+
+| Table File | Description |
+|---|---|
+| [`dataset_summary.csv`](docs/tables/dataset_summary.csv) | Summary of raw OULAD tables |
+| [`target_distribution.csv`](docs/tables/target_distribution.csv) | Distribution of original and binary target labels |
+| [`processed_feature_summary.csv`](docs/tables/processed_feature_summary.csv) | Summary of processed features |
+| [`early_feature_table_summary.csv`](docs/tables/early_feature_table_summary.csv) | Summary of generated early-window feature tables |
+| [`baseline_model_results.csv`](docs/tables/baseline_model_results.csv) | Full-period baseline model results |
+| [`baseline_confusion_matrices.csv`](docs/tables/baseline_confusion_matrices.csv) | Baseline confusion matrices |
+| [`early_prediction_results.csv`](docs/tables/early_prediction_results.csv) | Standard early prediction results for all models and windows |
+| [`early_prediction_best_by_window.csv`](docs/tables/early_prediction_best_by_window.csv) | Best standard early prediction model by observation window |
+| [`ablation_study_results.csv`](docs/tables/ablation_study_results.csv) | Complete feature-group ablation results |
+| [`ablation_best_by_group.csv`](docs/tables/ablation_best_by_group.csv) | Best ablation result per feature group |
+| [`ablation_best_per_window.csv`](docs/tables/ablation_best_per_window.csv) | Best feature group per observation window |
+| [`active_window_prediction_results.csv`](docs/tables/active_window_prediction_results.csv) | Active-at-window early prediction results |
+| [`active_window_dataset_summary.csv`](docs/tables/active_window_dataset_summary.csv) | Number of active students retained per observation window |
+| [`active_window_best_by_window.csv`](docs/tables/active_window_best_by_window.csv) | Best active-at-window model by observation window |
+| [`cross_module_validation_results.csv`](docs/tables/cross_module_validation_results.csv) | Complete cross-module validation results |
+| [`cross_module_best_by_holdout.csv`](docs/tables/cross_module_best_by_holdout.csv) | Best model for each holdout module |
+| [`cross_module_summary_by_window.csv`](docs/tables/cross_module_summary_by_window.csv) | Cross-module validation summary by observation window |
+| [`cross_module_worst_by_window.csv`](docs/tables/cross_module_worst_by_window.csv) | Worst holdout module per observation window |
+| [`shap_raw_importance_all_windows.csv`](docs/tables/shap_raw_importance_all_windows.csv) | SHAP raw feature importance across all windows |
+| [`shap_top10_raw_features_all_windows.csv`](docs/tables/shap_top10_raw_features_all_windows.csv) | Top 10 SHAP-ranked features per observation window |
+| [`top_subgroup_gaps.csv`](docs/tables/top_subgroup_gaps.csv) | Largest subgroup performance gaps |
+| [`subgroup_performance_results.csv`](docs/tables/subgroup_performance_results.csv) | Full subgroup performance analysis |
+| [`subgroup_performance_gaps.csv`](docs/tables/subgroup_performance_gaps.csv) | Subgroup performance-gap metrics |
+| [`calibration_threshold_summary.csv`](docs/tables/calibration_threshold_summary.csv) | Calibration and threshold summary |
+| [`threshold_analysis_all_windows.csv`](docs/tables/threshold_analysis_all_windows.csv) | Threshold-specific precision, recall, specificity, and F1 |
+| [`calibration_bins_all_windows.csv`](docs/tables/calibration_bins_all_windows.csv) | Calibration-bin statistics |
+| [`bootstrap_confidence_interval_summary.csv`](docs/tables/bootstrap_confidence_interval_summary.csv) | Bootstrap 95% confidence intervals |
+| [`bootstrap_metric_samples_all_windows.csv`](docs/tables/bootstrap_metric_samples_all_windows.csv) | Bootstrap metric samples for reproducibility |
+
+## 16.2 SHAP Feature Importance Figures
+
+### Figure 16.1. SHAP feature importance, Day 14
+
+![SHAP bar Day 14](docs/figures/shap/shap_bar_day14.png)
+
+### Figure 16.2. SHAP feature importance, Day 28
+
+![SHAP bar Day 28](docs/figures/shap/shap_bar_day28.png)
+
+### Figure 16.3. SHAP feature importance, Day 56
+
+![SHAP bar Day 56](docs/figures/shap/shap_bar_day56.png)
+
+### Figure 16.4. SHAP feature importance, Day 84
+
+![SHAP bar Day 84](docs/figures/shap/shap_bar_day84.png)
+
+### Figure 16.5. SHAP feature importance, Full period
+
+![SHAP bar Full](docs/figures/shap/shap_bar_full.png)
+
+## 16.3 SHAP Beeswarm Figures
+
+### Figure 16.6. SHAP beeswarm, Day 14
+
+![SHAP beeswarm Day 14](docs/figures/shap/shap_beeswarm_day14.png)
+
+### Figure 16.7. SHAP beeswarm, Day 28
+
+![SHAP beeswarm Day 28](docs/figures/shap/shap_beeswarm_day28.png)
+
+### Figure 16.8. SHAP beeswarm, Day 56
+
+![SHAP beeswarm Day 56](docs/figures/shap/shap_beeswarm_day56.png)
+
+### Figure 16.9. SHAP beeswarm, Day 84
+
+![SHAP beeswarm Day 84](docs/figures/shap/shap_beeswarm_day84.png)
+
+### Figure 16.10. SHAP beeswarm, Full period
+
+![SHAP beeswarm Full](docs/figures/shap/shap_beeswarm_full.png)
+
+## 16.4 Calibration Curve Figures
+
+### Figure 16.11. Calibration curve, Day 14
+
+![Calibration Day 14](docs/figures/calibration/calibration_curve_day14.png)
+
+### Figure 16.12. Calibration curve, Day 28
+
+![Calibration Day 28](docs/figures/calibration/calibration_curve_day28.png)
+
+### Figure 16.13. Calibration curve, Day 56
+
+![Calibration Day 56](docs/figures/calibration/calibration_curve_day56.png)
+
+### Figure 16.14. Calibration curve, Day 84
+
+![Calibration Day 84](docs/figures/calibration/calibration_curve_day84.png)
+
+### Figure 16.15. Calibration curve, Full period
+
+![Calibration Full](docs/figures/calibration/calibration_curve_full.png)
+
